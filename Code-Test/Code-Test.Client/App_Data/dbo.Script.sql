@@ -1,0 +1,19 @@
+﻿CREATE SCHEMA PriceChecker
+GO
+
+CREATE TABLE PriceChecker.Products
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	[Name] NVARCHAR(100) NOT NULL,
+	[Price] MONEY NOT NULL,
+	[Discounted] BIT NOT NULL
+)
+GO
+
+CREATE TABLE PriceChecker.States
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	[Name] NVARCHAR(100) NOT NULL,
+	[Tax] DECIMAL NOT NULL,
+)
+GO
