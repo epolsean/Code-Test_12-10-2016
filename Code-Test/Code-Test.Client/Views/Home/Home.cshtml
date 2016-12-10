@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    PriceCheckerEntities db = new PriceCheckerEntities();
+    var ProductList = db.Products.ToList();
+    var StateList = db.States.ToList();
+}
+
+<select class="form-control" name="product">
+    <option value="0" disabled selected>Products</option>
+    @foreach (var item in ProductList)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+<select class="form-control" name="state">
+    <option value="0" disabled selected>States</option>
+    @foreach (var item in StateList)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+<div>
+    <input type="text" class="form-control" name="quantity" placeholder="Quantity" />
+</div>
+<div>
+    <input type="submit" class="btn btn-default" value="Calculate" />
+</div>
