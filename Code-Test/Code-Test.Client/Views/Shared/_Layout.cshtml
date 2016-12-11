@@ -3,34 +3,38 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("Price Checker", "Home", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div id="wrap">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/Home">PRICE CHECKER</a>
             </div>
         </div>
-    </div>
 
-    <div class="container body-content">
-        <div class="row">
-            <div class="col-md-4">
-                @RenderBody()
-            </div>
-            <div class="col-md-4 col-md-offset-4">
-                @Html.Action("Home", "Calculator")
-            </div>
+        <div class="container body-content">
+            <h3>Select a Product, State, and Quantity to check pricing.</h3>
             <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
+            <div class="row">
+                <div class="col-md-4">
+                    @RenderBody()
+                </div>
+                <div class="col-md-4 col-md-offset-4">
+                    @Html.Action("Calculator", "Home")
+                </div>
+            </div>
         </div>
+        <div id="push"></div>
     </div>
+    <hr />
+    <footer>
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - Price Checker Application</p>
+        </div>
+    </footer>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

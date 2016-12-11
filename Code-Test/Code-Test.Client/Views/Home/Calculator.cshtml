@@ -1,29 +1,91 @@
-﻿
-<table>
-    <tbody>
-        <tr>
-            <th>Product:</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Price:</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Discount:</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Subtotal:</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Tax:</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th>Total:</th>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+﻿@model Code_Test.Client.Models.PriceCheckerModel
+
+@{ 
+    CalculatePrice cp = new CalculatePrice();
+
+    string name = "";
+    string price = "";
+    string tax = "";
+    string discount = "";
+    string subtotal = "";
+    decimal st = 0;
+    string total = "";
+
+    if(Model.ProductName != "")
+    {
+        name = Model.ProductName;
+        price = String.Format("{0:C}", Model.ProductPrice);
+        tax = String.Format("{0:0%}", Model.StateTax);
+        st = cp.GetSubtotal(Model.ProductPrice, Model.ProductQuantity, Model.ProductDiscounted);
+        subtotal = String.Format("{0:C}", st);
+        total = String.Format("{0:C}", cp.GetTotal(st, Model.StateTax));
+
+        if (Model.ProductDiscounted)
+        {
+            discount = "10% off";
+        }
+        else
+        {
+            discount = "None";
+        }
+    }
+}
+
+<div class="well">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="pull-right table-header">Product:</p>
+            </div>
+            <div class="col-md-8">
+                <p class="pull-right">@name</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="pull-right table-header">Price:</p>
+            </div>
+            <div class="col-md-8">
+                <p class="pull-right">@price</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="pull-right table-header">Discount:</p>
+            </div>
+            <div class="col-md-8">
+                <p class="pull-right">@discount</p>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="pull-right table-header">Subtotal:</p>
+            </div>
+            <div class="col-md-8">
+                <p class="pull-right">@subtotal</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="pull-right table-header">Tax:</p>
+            </div>
+            <div class="col-md-8">
+                <p class="pull-right">@tax</p>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="pull-right table-header">Total:</p>
+            </div>
+            <div class="col-md-8">
+                <p class="pull-right">@total</p>
+            </div>
+        </div>
+    </div>
+</div>

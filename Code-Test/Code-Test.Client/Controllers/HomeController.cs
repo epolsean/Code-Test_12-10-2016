@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Code_Test.Client.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,14 +9,19 @@ namespace Code_Test.Client.Controllers
 {
     public class HomeController : Controller
     {
-        public ViewResult Home()
+        public ViewResult Home(PriceCheckerModel PCModel)
         {
-            return View();
+            return View(PCModel);
         }
-
-        public PartialViewResult Calculator()
+        public PartialViewResult Calculator(PriceCheckerModel PCModel)
         {
-            return PartialView();
+            return PartialView(PCModel);
+        }
+        
+        public RedirectToRouteResult Calculate(string product, string state, string quantity)
+        {
+            UpdateModel um = new UpdateModel();
+            return RedirectToAction("Home", um.GetUpdatedModel(product, state, quantity));
         }
     }
 }

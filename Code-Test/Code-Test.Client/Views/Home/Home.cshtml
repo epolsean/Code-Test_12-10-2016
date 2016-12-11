@@ -1,4 +1,5 @@
-﻿
+﻿@model Code_Test.Client.Models.PriceCheckerModel
+
 @{
     ViewBag.Title = "Home";
     PriceCheckerEntities db = new PriceCheckerEntities();
@@ -6,23 +7,49 @@
     var StateList = db.States.ToList();
 }
 
-<select class="form-control" name="product">
-    <option value="0" disabled selected>Products</option>
-    @foreach (var item in ProductList)
-    {
-        <option value="@item.Id">@item.Name</option>
-    }
-</select>
-<select class="form-control" name="state">
-    <option value="0" disabled selected>States</option>
-    @foreach (var item in StateList)
-    {
-        <option value="@item.Id">@item.Name</option>
-    }
-</select>
-<div>
-    <input type="text" class="form-control" name="quantity" placeholder="Quantity" />
-</div>
-<div>
-    <input type="submit" class="btn btn-default" value="Calculate" />
-</div>
+@using (Html.BeginForm("Calculate", "Home"))
+{
+    <div class="form-group">
+        <select class="form-control" name="product">
+            <option value="0" disabled selected>Products</option>
+            @foreach (var item in ProductList)
+            {
+                if (Model.ProductName != "" && Model.ProductID == item.Id)
+                {
+                    <option value="@item.Id" selected>@item.Name</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+        <select class="form-control" name="state">
+            <option value="0" disabled selected>States</option>
+            @foreach (var item in StateList)
+            {
+                if (Model.StateName != "" && Model.StateID == item.Id)
+                {
+                    <option value="@item.Id" selected>@item.Name</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+        <div>
+            @if (Model.ProductName != "")
+            {
+                <input type="text" class="form-control" name="quantity" placeholder="Quantity" value="@Model.ProductQuantity" />
+            }
+            else
+            {
+                <input type="text" class="form-control" name="quantity" placeholder="Quantity" />
+            }
+        </div>
+        <div>
+            <input type="submit" class="btn btn-default" value="Calculate" />
+        </div>
+    </div>
+}

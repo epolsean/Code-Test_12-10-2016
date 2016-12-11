@@ -1,4 +1,8 @@
-﻿body {
+﻿body, html {
+    height: 100%;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -16,3 +20,25 @@ textarea {
     max-width: 280px;
 }
 
+.form-control {
+    margin-bottom: .25em;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;
+}
+
+#push, footer {
+    height: 60px;
+}
+
+.table-header {
+    font-weight: bold;
+}
+
+div.col-md-4 p.pull-right {
+    font-variant: small-caps;
+}
