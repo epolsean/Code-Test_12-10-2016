@@ -120,6 +120,13 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="PriceCheckerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PriceCheckerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="PriceCheckerModel.edmx.diagram">
+      <DependentUpon>PriceCheckerModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -163,13 +170,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="PriceCheckerModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PriceCheckerModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="PriceCheckerModel.edmx.diagram">
-      <DependentUpon>PriceCheckerModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />

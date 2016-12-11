@@ -12,28 +12,34 @@ namespace Code_Test.Client
         {
             PriceCheckerEntities db = new PriceCheckerEntities();
             PriceCheckerModel PCModel = new PriceCheckerModel();
+            int pid = 0;
+            int sid = 0;
+            int quantity = 0;
 
-            if (Product != string.Empty && State != string.Empty && Quantity != string.Empty)
+            if (!string.IsNullOrEmpty(Product) && !string.IsNullOrEmpty(State) && !string.IsNullOrEmpty(Quantity))
             {
-                foreach (var item in db.Products)
+                if (int.TryParse(Product, out pid) && int.TryParse(State, out sid) && int.TryParse(Quantity, out quantity))
                 {
-                    if (item.Id == int.Parse(Product))
+                    foreach (var item in db.Products)
                     {
-                        PCModel.ProductID = item.Id;
-                        PCModel.ProductName = item.Name;
-                        PCModel.ProductPrice = item.Price;
-                        PCModel.ProductQuantity = int.Parse(Quantity);
-                        PCModel.ProductDiscounted = item.Discounted;
+                        if (item.Id == pid)
+                        {
+                            PCModel.ProductID = item.Id;
+                            PCModel.ProductName = item.Name;
+                            PCModel.ProductPrice = item.Price;
+                            PCModel.ProductQuantity = quantity;
+                            PCModel.ProductDiscounted = item.Discounted;
+                        }
                     }
-                }
 
-                foreach (var item in db.States)
-                {
-                    if (item.Id == int.Parse(State))
+                    foreach (var item in db.States)
                     {
-                        PCModel.StateID = item.Id;
-                        PCModel.StateName = item.Name;
-                        PCModel.StateTax = item.Tax;
+                        if (item.Id == sid)
+                        {
+                            PCModel.StateID = item.Id;
+                            PCModel.StateName = item.Name;
+                            PCModel.StateTax = item.Tax;
+                        }
                     }
                 }
             }
