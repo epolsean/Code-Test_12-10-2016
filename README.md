@@ -17,5 +17,4 @@ This is a code test that is a price calculator.
 + HTML
 + CSS
 + BootStrap
-+ JavaScript
 + GitHub
